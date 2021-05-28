@@ -8,14 +8,13 @@ import Login from 'pages/Login';
 const App = () => (
   <React.Fragment>
     <CssBaseline />
-    <BrowserRouter>
-    <Switch>
-      <Route path='/login' component={Login} />
-      <Route component={MainPage} />
-    </Switch>
-  </BrowserRouter>
+      <BrowserRouter>
+      <Switch>
+        <Route path='/login' component={Login} />
+        <Route component={MainPage} />
+      </Switch>
+    </BrowserRouter>
   </React.Fragment>
-
 )
 
 export default App
