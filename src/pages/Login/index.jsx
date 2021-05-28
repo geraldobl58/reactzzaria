@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Grid, Button } from '@material-ui/core';
 
 import firebase from 'firebase/app';
@@ -16,11 +16,6 @@ const firebaseConfig = {
 };
 firebase.initializeApp(firebaseConfig);
 
-const login = () => {
-  const provider = new firebase.auth.GithubAuthProvider();
-  firebase.auth().signInWithRedirect(provider);
-}
-
 function Login() {
   const [userInfo, setUserInfo] = useState({
     isUserLoggedIn: false,
@@ -31,21 +26,27 @@ function Login() {
 
   useEffect(() => {
     firebase.auth().onAuthStateChanged((user) => {
+      console.log(user)
       setUserInfo({
         isUserLoggedIn: !!user,
         user
       });
     });
-  }, [])
+  }, []);
 
-  const logout = () => {
+  const login = useCallback(() => {
+    const provider = new firebase.auth.GithubAuthProvider();
+    firebase.auth().signInWithRedirect(provider);
+  }, []);
+
+  const logout = useCallback(() => {
     firebase.auth().signOut().then(() => {
       setUserInfo({
         isUserLoggedIn: false,
         user: null
       });
     });
-  }
+  }, []);
 
   return (
     <Container>
