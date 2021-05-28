@@ -9,8 +9,8 @@ const Login = () => (
       <Grid item>
         <Logo />
       </Grid>
-      <Grid item xs={12}>
-        <GitHubButton variant="contained" fullWidth>
+    <Grid item xs={12} container justify="center">
+        <GitHubButton>
           Entrar com GitHub
         </GitHubButton>
       </Grid>
