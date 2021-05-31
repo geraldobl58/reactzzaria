@@ -103,7 +103,8 @@ const Main = () => {
                       <Typography variant='h5'>{item.name}</Typography>
 
                       <Typography>
-                        {item.slices} fatias, {item.flavours} sabores
+                        {item.slices} fatias, {item.flavours}
+                        {singularOrPlural(item.flavours, ' sabor', ' sabores')}
                       </Typography>
                   </PaperPizza>
                 </Paper>
@@ -114,6 +115,10 @@ const Main = () => {
       </Content>
     </React.Fragment>
   )
+}
+
+function singularOrPlural(amount, singular, plural) {
+  return amount === 1 ? singular : plural;
 }
 
 const pizzaSizes = [
