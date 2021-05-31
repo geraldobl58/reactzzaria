@@ -7,7 +7,8 @@ import {
   Typography,
   Menu,
   MenuItem,
-  Grid
+  Grid,
+  withStyles
  } from '@material-ui/core';
 
 import { AccountCircle } from '@material-ui/icons';
@@ -61,6 +62,8 @@ const Main = () => {
         </MaterialToolbar>
       </AppBar>
 
+      <Spacer />
+
       <Content>
         <Grid container justify="center">
           <Grid item>
@@ -74,5 +77,13 @@ const Main = () => {
     </React.Fragment>
   )
 }
+
+const style = (theme) => ({
+  main: theme.mixins.toolbar
+});
+
+const Spacer = withStyles(style)(({ classes }) => (
+  <div className={classes.main} />
+));
 
 export default Main
