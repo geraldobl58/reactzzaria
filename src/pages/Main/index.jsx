@@ -8,7 +8,8 @@ import {
   Menu,
   MenuItem,
   Grid,
-  withStyles
+  withStyles,
+  Paper
  } from '@material-ui/core';
 
 import { AccountCircle } from '@material-ui/icons';
@@ -65,18 +66,56 @@ const Main = () => {
       <Spacer />
 
       <Content>
-        <Grid container justify="center">
-          <Grid item>
-            <Typography variant="h3">
-              O que vai ser hoje, {userName}?
-            </Typography>
-          </Grid>
+        <Grid container direction='column' alignItems='center'>
+          <Typography variant="h3">
+            O que vai ser hoje, {userName}?
+          </Typography>
+          <Typography variant="h4">
+            Escolha o tamanho da pizza:
+          </Typography>
+        </Grid>
+
+        <Grid container spacing={6}>
+          {pizzaSizes.map((item) => (
+            <Grid item key={item.id} xs={4}>
+              <Paper style={{ padding: 20 }}>
+                <div>{item.size}cm</div>
+                <Typography>{item.name}</Typography>
+                <Typography>
+                  {item.slices} fatias, {item.flavours} sabores
+                </Typography>
+              </Paper>
+            </Grid>
+          ))}
         </Grid>
       </Content>
-
     </React.Fragment>
   )
 }
+
+const pizzaSizes = [
+  {
+    id: 1,
+    name: 'Pequena',
+    size: 28,
+    slices: 2,
+    flavours: 1
+  },
+  {
+    id: 2,
+    name: 'Média',
+    size: 30,
+    slices: 6,
+    flavours: 2
+  },
+  {
+    id: 3,
+    name: 'Grande',
+    size: 32,
+    slices: 8,
+    flavours: 3
+  }
+]
 
 const style = (theme) => ({
   main: theme.mixins.toolbar
