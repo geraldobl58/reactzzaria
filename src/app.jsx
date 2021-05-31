@@ -1,4 +1,4 @@
-import React, { lazy, Suspense, useEffect, useContext } from 'react';
+import React, { lazy, Suspense, useState, useEffect, useContext } from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
@@ -12,19 +12,29 @@ const MainPage = lazy(() => import('pages/Main'))
 const Login = lazy(() => import('pages/Login'))
 
 function App({ location }) {
-  const { userInfo, setUserInfo } = useContext(AuthContext);
+  const [didCheckUserIn, setDidCheckUserIn]  = useState(false);
+  const { userInfo, setUserInfo, logout } = useContext(AuthContext);
 
   const { isUserLoggedIn } = userInfo;
 
   useEffect(() => {
     firebase.auth().onAuthStateChanged((user) => {
-      console.log(user);
       setUserInfo({
         isUserLoggedIn: !!user,
         user
       });
+      setDidCheckUserIn(true);
     });
-  }, [setUserInfo]);
+
+    window.logout = logout;
+  }, [setUserInfo, logout]);
+
+  if (!didCheckUserIn) {
+    console.log('ainda não checou se usuário está logado ou não');
+    return <LinearProgress />
+  }
+
+  console.log('já checou se usuário está logado');
 
   if (isUserLoggedIn) {
     console.log('Logado!');
