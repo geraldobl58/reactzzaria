@@ -8,15 +8,26 @@ import {
   Menu,
   MenuItem,
   Grid,
+  Paper,
+  Divider,
   withStyles,
-  Paper
  } from '@material-ui/core';
 
 import { AccountCircle } from '@material-ui/icons';
 
 import { AuthContext } from 'contexts/auth';
 
-import { Logo, LogoContainer, MaterialToolbar, Content } from './styles';
+import {
+  Logo,
+  LogoContainer,
+  MaterialToolbar,
+  Content,
+  PaperPizza,
+  MaterialDivider,
+  Pizza,
+  PizzaText,
+  PizzasGrid
+} from './styles';
 
 const Main = () => {
   const [anchorElement, setAnchorElement] = useState(null);
@@ -67,27 +78,39 @@ const Main = () => {
 
       <Content>
         <Grid container direction='column' alignItems='center'>
-          <Typography variant="h3">
+          <Typography variant="h3" gutterBottom>
             O que vai ser hoje, {userName}?
           </Typography>
-          <Typography variant="h4">
+          <Typography variant="h4" gutterBottom>
             Escolha o tamanho da pizza:
           </Typography>
         </Grid>
 
-        <Grid container spacing={6}>
-          {pizzaSizes.map((item) => (
-            <Grid item key={item.id} xs={4}>
-              <Paper style={{ padding: 20 }}>
-                <div>{item.size}cm</div>
-                <Typography>{item.name}</Typography>
-                <Typography>
-                  {item.slices} fatias, {item.flavours} sabores
-                </Typography>
-              </Paper>
-            </Grid>
-          ))}
-        </Grid>
+        <PizzasGrid>
+          <Grid container spacing={6}>
+            {pizzaSizes.map((item) => (
+              <Grid item key={item.id} xs>
+                <Paper>
+                  <PaperPizza>
+                      <Pizza>
+                        <PizzaText>{item.size}cm</PizzaText>
+                      </Pizza>
+
+                      <MaterialDivider>
+                        <Divider />
+                      </MaterialDivider>
+
+                      <Typography variant='h5'>{item.name}</Typography>
+
+                      <Typography>
+                        {item.slices} fatias, {item.flavours} sabores
+                      </Typography>
+                  </PaperPizza>
+                </Paper>
+              </Grid>
+            ))}
+          </Grid>
+        </PizzasGrid>
       </Content>
     </React.Fragment>
   )
