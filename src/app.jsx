@@ -30,27 +30,15 @@ function App({ location }) {
   }, [setUserInfo, logout]);
 
   if (!didCheckUserIn) {
-    console.log('ainda não checou se usuário está logado ou não');
     return <LinearProgress />
   }
 
-  console.log('já checou se usuário está logado');
+  if (isUserLoggedIn && location.pathname === '/login') {
+    return <Redirect to='/' />
+  }
 
-  if (isUserLoggedIn) {
-    console.log('Logado!');
-    if (location.pathname === '/login') {
-      console.log('Logado e na página de login');
-      return <Redirect to='/' />
-    } else {
-      console.log('usuário logado mas não estpa na página de login');
-    }
-  } else {
-    console.log('Não logado');
-    if (location.pathname !== '/login') {
-      return <Redirect to='/login' />
-    } else {
-      console.log('Logado e está na tela de login');
-    }
+  if (!isUserLoggedIn && location.pathname !== '/login') {
+    return <Redirect to='/login' />
   }
 
   return (
