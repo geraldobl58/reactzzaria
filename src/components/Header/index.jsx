@@ -20,7 +20,6 @@ const Header = () => {
 
   const { userInfo, logout } = useContext(AuthContext);
 
-  const userName = userInfo.user.displayName.split(' ')[0];
 
   const handleOpenMenu = (e) => {
     setAnchorElement(e.target);
@@ -40,7 +39,7 @@ const Header = () => {
 
           <Typography
             color="inherit">
-              Olá {userName}, seja vindo!
+              Olá {userInfo.user.displayName}, seja vindo!
           </Typography>
 
           <IconButton color="inherit" onClick={handleOpenMenu}>

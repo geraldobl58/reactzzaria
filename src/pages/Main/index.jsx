@@ -24,8 +24,6 @@ import Header from 'components/Header';
 const Main = () => {
   const { userInfo } = useContext(AuthContext);
 
-  const userName = userInfo.user.displayName.split(' ')[0];
-
   return (
     <React.Fragment>
 
@@ -36,7 +34,7 @@ const Main = () => {
       <Content>
         <Grid container direction='column' alignItems='center'>
           <Typography variant="h3" gutterBottom>
-            O que vai ser hoje, {userName}?
+            O que vai ser hoje, {userInfo.user.firstName}?
           </Typography>
           <Typography variant="h4" gutterBottom>
             Escolha o tamanho da pizza:
