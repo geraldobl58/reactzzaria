@@ -42,7 +42,8 @@ const Pizzas = () => {
               <Paper>
                 <Card>
                   <CardActionArea>
-                    <CardPizzaArea to='/sabores-da-pizza'>
+
+                    <CardPizzaArea to={{ pathname: '/flavours', state: item }}>
                       <Pizza>
                         <PizzaText>{item.size}cm</PizzaText>
                       </Pizza>

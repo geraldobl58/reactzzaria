@@ -8,6 +8,7 @@ import { Content } from './styles';
 import Header from 'components/Header';
 
 const Pizzas = lazy(() => import('pages/Pizzas'));
+const Flavours = lazy(() => import('pages/Flavours'));
 
 const Main = () => (
   <React.Fragment>
@@ -16,7 +17,8 @@ const Main = () => (
     <Content>
       <Suspense fallback='Carregando...'>
         <Switch>
-          <Route path='/' component={Pizzas} />
+          <Route path='/' exact component={Pizzas} />
+          <Route path='/flavours' component={Flavours} />
         </Switch>
       </Suspense>
     </Content>
