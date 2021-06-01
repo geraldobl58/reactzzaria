@@ -7,6 +7,7 @@ import { HOME } from 'routes';
 import { Typography, Grid, Card, Divider } from '@material-ui/core';
 
 import singularOrPlural from 'utils/singularOrPlural';
+import toMoney from 'utils/toMoney';
 
 import {
   PizzasGrid,
@@ -69,7 +70,9 @@ const Flavours = ({ location }) => {
                     <CardTitle>
                     <Typography>{item.name}</Typography></CardTitle>
 
-                    <Typography variant='h5'>{item.value[id]}</Typography>
+                    <Typography variant='h5'>
+                      {toMoney(item.value[id])}
+                    </Typography>
                   </CardLabel>
                 </Card>
               </MaterialCard>
