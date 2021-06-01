@@ -13,7 +13,7 @@ import {
 
 import { AuthContext } from 'contexts/auth';
 
-import pizzaSizes from 'data'
+import pizzaSizes from 'data/sizes'
 
 import {
   CardPizzaArea,
