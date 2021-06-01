@@ -19,11 +19,11 @@ export const CardPizzaArea = styled(Link)`
 
 export const Pizza = styled.div`
   border-radius: 50%;
-  border: 1px solid #ccc;
+  border: 1px solid ${({ theme }) => theme.palette.grey.A100};
   height: 200px;
   width: 200px;
   position: relative;
-  background: #fff;
+  background: ${({ theme }) => theme.palette.common.white};
   z-index: 1;
 
   display: flex;
@@ -33,7 +33,7 @@ export const Pizza = styled.div`
   &::before,
   &::after {
     content: '';
-    background: #ccc;
+    background: ${({ theme }) => theme.palette.grey.A100};
     position: absolute;
     transform: rotate(45deg);
   }
@@ -53,7 +53,7 @@ export const PizzaText = styled.div`
   font-size: 1.2rem;
   width: 80px;
   height: 80px;
-  background: #fff;
+  background: ${({ theme }) => theme.palette.common.white};
   border-radius: 50%;
   position: relative;
   z-index: 1;

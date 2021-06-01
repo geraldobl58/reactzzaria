@@ -11,17 +11,17 @@ export const Logo = styled(MainLogo)`
   height: 50px;
 
   & path {
-    fill: #fff;
+    fill: ${({ theme }) => theme.palette.common.white};
   }
 
   & line {
-    stroke: #fff;
+    stroke: ${({ theme }) => theme.palette.common.white};
   }
 
 `;
 
 export const MaterialToolbar = styled.div`
-  max-width: 960px;
+  max-width: ${({ theme }) => theme.breakpoints.values.lg}px;
   width: 100%;
   margin: 0 auto;
 `
