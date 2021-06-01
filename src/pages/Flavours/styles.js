@@ -30,7 +30,8 @@ export const CardTitle = styled.div`
 export const MaterialCard = styled.div`
   border: 2px solid transparent;
   border-radius: 5px;
-  border-color: ${({ checked }) => checked ? '#000' : ''};
+  border-color: ${({
+    checked, theme }) => checked ? theme.palette.secondary.light : ''};
 `
 
 export const Checkbox = styled.input.attrs({

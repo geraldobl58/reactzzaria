@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
+import { ThemeProvider } from 'styled-components';
 import { CssBaseline, createMuiTheme, MuiThemeProvider } from '@material-ui/core';
 
 import AuthProvider from 'contexts/auth';
@@ -15,12 +16,14 @@ const theme = createMuiTheme({
 function Root() {
   return (
     <MuiThemeProvider theme={theme}>
-      <AuthProvider>
-        <CssBaseline />
-          <BrowserRouter>
-          <Route component={App} />
-        </BrowserRouter>
-      </AuthProvider>
+      <ThemeProvider theme={theme}>
+        <AuthProvider>
+          <CssBaseline />
+            <BrowserRouter>
+            <Route component={App} />
+          </BrowserRouter>
+        </AuthProvider>
+        </ThemeProvider>
     </MuiThemeProvider>
   )
 }
