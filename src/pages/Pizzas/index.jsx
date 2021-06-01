@@ -11,7 +11,6 @@ import {
   CardActionArea
 } from '@material-ui/core';
 
-
 import { AuthContext } from 'contexts/auth';
 
 import pizzaSizes from 'data'
@@ -23,6 +22,8 @@ import {
   PizzaText,
   PizzasGrid
 } from './styles';
+
+import singularOrPlural from 'utils/singularOrPlural';
 
 const Pizzas = () => {
   const { userInfo } = useContext(AuthContext);
@@ -71,10 +72,6 @@ const Pizzas = () => {
       </PizzasGrid>
     </React.Fragment>
   )
-}
-
-function singularOrPlural(amount, singular, plural) {
-  return amount === 1 ? singular : plural;
 }
 
 export default Pizzas;
