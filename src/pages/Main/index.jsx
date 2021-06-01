@@ -5,8 +5,6 @@ import { HOME, FLAVOURS } from 'routes';
 
 import { withStyles } from '@material-ui/core';
 
-import { Content } from './styles';
-
 import Header from 'components/Header';
 
 const Pizzas = lazy(() => import('pages/Pizzas'));
@@ -15,15 +13,13 @@ const Flavours = lazy(() => import('pages/Flavours'));
 const Main = () => (
   <React.Fragment>
     <Header />
-    <Spacer />
-    <Content>
+      <Spacer />
       <Suspense fallback='Carregando...'>
         <Switch>
           <Route path={HOME} exact component={Pizzas} />
           <Route path={FLAVOURS} component={Flavours} />
         </Switch>
       </Suspense>
-    </Content>
   </React.Fragment>
 )
 

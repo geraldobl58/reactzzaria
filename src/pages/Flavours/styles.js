@@ -39,3 +39,18 @@ export const Checkbox = styled.input.attrs({
 })`
   display: none;
 `
+
+export const Footer = styled.footer`
+  width: 100%;
+  padding: ${({ theme }) => theme.spacing(3)}px;
+  box-shadow: 0 0 30px ${({ theme }) => theme.palette.grey[400]};
+`
+
+export const Content = styled.main`
+  padding: 80px 20px 20px;
+  flex-grow: 1;
+`
+
+export const Title = styled.div`
+  padding: 80px 20px 20px;
+`

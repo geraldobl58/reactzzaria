@@ -16,6 +16,7 @@ import { AuthContext } from 'contexts/auth';
 import pizzaSizes from 'data/sizes'
 
 import {
+  Content,
   CardPizzaArea,
   MaterialDivider,
   Pizza,
@@ -29,7 +30,7 @@ const Pizzas = () => {
   const { userInfo } = useContext(AuthContext);
 
   return (
-    <React.Fragment>
+    <Content>
       <Grid container direction='column' alignItems='center'>
         <Typography variant="h3" gutterBottom>
           O que vai ser hoje, {userInfo.user.firstName}?
@@ -69,7 +70,7 @@ const Pizzas = () => {
           ))}
         </Grid>
       </PizzasGrid>
-    </React.Fragment>
+    </Content>
   )
 }
 

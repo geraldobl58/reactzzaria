@@ -1,8 +1,5 @@
 import styled from 'styled-components';
 
-export const Content = styled.main`
-  padding: 80px 20px 20px;
-`
 
 export const MaterialDivider = styled.div`
   margin: 20px 0;

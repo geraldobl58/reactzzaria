@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 import { HOME } from 'routes';
 
-import { Typography, Grid, Card, Divider } from '@material-ui/core';
+import { Typography, Grid, Card, Divider, Container } from '@material-ui/core';
 
 import singularOrPlural from 'utils/singularOrPlural';
 import toMoney from 'utils/toMoney';
@@ -15,7 +15,10 @@ import {
   CardLabel,
   CardTitle,
   MaterialCard,
-  Checkbox
+  Checkbox,
+  Footer,
+  Content,
+  Title
 } from './styles';
 
 import pizzaFlavours from 'data/flavours';
@@ -46,40 +49,50 @@ const Flavours = ({ location }) => {
   return (
     <React.Fragment>
        <Grid container direction='column' alignItems='center'>
-        <Typography variant="h4" gutterBottom>
-          Escolha até {flavours} {singularOrPlural(flavours, ' sabor', ' sabores')}
-        </Typography>
+         <Title>
+            <Typography variant="h4" gutterBottom>
+              Escolha até {flavours} {singularOrPlural(flavours, ' sabor', ' sabores')}
+            </Typography>
+          </Title>
       </Grid>
 
-      <PizzasGrid>
-        <Grid container spacing={6}>
-          {pizzaFlavours.map((item) => (
-            <Grid item key={item.id} xs>
-              <MaterialCard checked={!!checkboxes[item.id]}>
-                <Card>
-                  <CardLabel>
-                    <Checkbox
-                      checked={!!checkboxes[item.id]}
-                      onChange={handleChangeCheckbox(item.id)}
-                    />
+      <Content>
+        <PizzasGrid>
+          <Grid container spacing={6}>
+            {pizzaFlavours.map((item) => (
+              <Grid item key={item.id} xs>
+                <MaterialCard checked={!!checkboxes[item.id]}>
+                  <Card>
+                    <CardLabel>
+                      <Checkbox
+                        checked={!!checkboxes[item.id]}
+                        onChange={handleChangeCheckbox(item.id)}
+                      />
 
-                    <Img src={item.image} alt={item.name} />
+                      <Img src={item.image} alt={item.name} />
 
-                    <Divider />
+                      <Divider />
 
-                    <CardTitle>
-                    <Typography>{item.name}</Typography></CardTitle>
+                      <CardTitle>
+                      <Typography>{item.name}</Typography></CardTitle>
 
-                    <Typography variant='h5'>
-                      {toMoney(item.value[id])}
-                    </Typography>
-                  </CardLabel>
-                </Card>
-              </MaterialCard>
-            </Grid>
-          ))}
-        </Grid>
-      </PizzasGrid>
+                      <Typography variant='h5'>
+                        {toMoney(item.value[id])}
+                      </Typography>
+                    </CardLabel>
+                  </Card>
+                </MaterialCard>
+              </Grid>
+            ))}
+          </Grid>
+        </PizzasGrid>
+      </Content>
+
+      <Footer>
+        <Container>
+          Footer
+        </Container>
+      </Footer>
     </React.Fragment>
   )
 }

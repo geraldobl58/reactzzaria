@@ -1,6 +1,11 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
+export const Content = styled.main`
+  flex-grow: 1;
+  padding: 80px 20px 20px;
+`
+
 export const MaterialDivider = styled.div`
   margin: 20px 0;
   width: 100%;
