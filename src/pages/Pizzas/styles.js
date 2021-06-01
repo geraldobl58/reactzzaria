@@ -1,16 +1,20 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 export const MaterialDivider = styled.div`
   margin: 20px 0;
   width: 100%;
 `;
 
-export const PaperPizza = styled.div`
+export const CardPizzaArea = styled(Link)`
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 20px 0;
   min-width: 250px;
+
+  color: inherit;
+  text-decoration: none;
 `;
 
 export const Pizza = styled.div`
@@ -19,6 +23,8 @@ export const Pizza = styled.div`
   height: 200px;
   width: 200px;
   position: relative;
+  background: #fff;
+  z-index: 1;
 
   display: flex;
   justify-content: center;

@@ -4,11 +4,13 @@ import {
   Typography,
   Grid,
   Paper,
-  Divider
+  Divider,
+  Card,
+  CardActionArea
  } from '@material-ui/core';
 
  import {
-  PaperPizza,
+  CardPizzaArea,
   MaterialDivider,
   Pizza,
   PizzaText,
@@ -38,22 +40,26 @@ const Pizzas = () => {
           {pizzaSizes.map((item) => (
             <Grid item key={item.id} xs>
               <Paper>
-                <PaperPizza>
-                    <Pizza>
-                      <PizzaText>{item.size}cm</PizzaText>
-                    </Pizza>
+                <Card>
+                  <CardActionArea>
+                    <CardPizzaArea to='/sabores-da-pizza'>
+                      <Pizza>
+                        <PizzaText>{item.size}cm</PizzaText>
+                      </Pizza>
 
-                    <MaterialDivider>
-                      <Divider />
-                    </MaterialDivider>
+                      <MaterialDivider>
+                        <Divider />
+                      </MaterialDivider>
 
-                    <Typography variant='h5'>{item.name}</Typography>
+                      <Typography variant='h5'>{item.name}</Typography>
 
-                    <Typography>
-                      {item.slices} fatias, {item.flavours}
-                      {singularOrPlural(item.flavours, ' sabor', ' sabores')}
-                    </Typography>
-                </PaperPizza>
+                      <Typography>
+                        {item.slices} fatias, {item.flavours}
+                        {singularOrPlural(item.flavours, ' sabor', ' sabores')}
+                      </Typography>
+                    </CardPizzaArea>
+                  </CardActionArea>
+                </Card>
               </Paper>
             </Grid>
           ))}
