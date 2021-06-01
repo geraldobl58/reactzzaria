@@ -8,7 +8,14 @@ import { Typography, Grid, Card, Divider } from '@material-ui/core';
 
 import singularOrPlural from 'utils/singularOrPlural';
 
-import { PizzasGrid, Img, CardLabel, CardTitle } from './styles';
+import {
+  PizzasGrid,
+  Img,
+  CardLabel,
+  CardTitle,
+  MaterialCard,
+  Checkbox
+} from './styles';
 
 import pizzaFlavours from 'data/flavours';
 
@@ -47,10 +54,10 @@ const Flavours = ({ location }) => {
         <Grid container spacing={6}>
           {pizzaFlavours.map((item) => (
             <Grid item key={item.id} xs>
+              <MaterialCard checked={!!checkboxes[item.id]}>
                 <Card>
                   <CardLabel>
-                    <input
-                      type="checkbox"
+                    <Checkbox
                       checked={!!checkboxes[item.id]}
                       onChange={handleChangeCheckbox(item.id)}
                     />
@@ -65,6 +72,7 @@ const Flavours = ({ location }) => {
                     <Typography variant='h5'>{item.value[id]}</Typography>
                   </CardLabel>
                 </Card>
+              </MaterialCard>
             </Grid>
           ))}
         </Grid>
