@@ -15,8 +15,6 @@ import pizzaFlavours from 'data/flavours';
 const Flavours = ({ location }) => {
   const [checkboxes, setCheckboxes] = useState(() => ({}));
 
-  console.log('CHECKBOX', checkboxes);
-
   if (!location.state) {
     return <Redirect to={HOME}  />
   }
@@ -24,10 +22,15 @@ const Flavours = ({ location }) => {
   const { flavours, id } = location.state;
 
   const handleChangeCheckbox = (pizzaId) => (e) => {
+    if (checkboxChecked(checkboxes).length === flavours
+      && e.target.checked === true) {
+        return;
+    }
+
     setCheckboxes((checkboxes) => {
       return {
         ...checkboxes,
-        [pizzaId]: !checkboxes[pizzaId]
+        [pizzaId]: e.target.checked
       }
     });
   }
@@ -72,6 +75,10 @@ const Flavours = ({ location }) => {
 
 Flavours.propTypes = {
   location: PropTypes.object.isRequired
+}
+
+function checkboxChecked(checkboxes) {
+  return Object.values(checkboxes).filter(Boolean);
 }
 
 export default Flavours;
