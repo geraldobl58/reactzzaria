@@ -5,9 +5,9 @@ export default [
     image: '/data/images/pizza-calabresa.png',
     name: 'Calabresa',
     value: {
-      '0': 20,
-      '1': 30,
-      '2': 40,
+      '1': 20,
+      '2': 30,
+      '3': 40,
     }
   },
   {
@@ -15,19 +15,19 @@ export default [
     image: '/data/images/pizza-frango-catupiry.png',
     name: 'Frango com Catupiry',
     value: {
-      '0': 25,
-      '1': 35,
-      '2': 45,
+      '1': 25,
+      '2': 35,
+      '3': 45,
     }
   },
   {
-    id: 2,
-    image: '/data/images/pizza-prestigio.png',
+    id: 3,
+    image: '/data/images/pizza-prestigio.jpg',
     name: 'Prestígio',
     value: {
-      '0': 30,
-      '1': 40,
-      '2': 50,
+      '1': 30,
+      '2': 40,
+      '3': 50,
     }
   }
 ]
