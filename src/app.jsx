@@ -28,8 +28,6 @@ function App({ location }) {
       });
       setDidCheckUserIn(true);
     });
-
-    window.logout = logout;
   }, [setUserInfo, logout]);
 
   if (!didCheckUserIn) {
