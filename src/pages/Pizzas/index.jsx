@@ -46,7 +46,6 @@ const Pizzas = () => {
               <Paper>
                 <Card>
                   <CardActionArea>
-
                     <CardPizzaArea to={{ pathname: FLAVOURS, state: item }}>
                       <Pizza>
                         <PizzaText>{item.size}cm</PizzaText>

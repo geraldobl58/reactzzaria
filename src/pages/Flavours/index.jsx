@@ -8,7 +8,7 @@ import { Typography, Grid, Card, Divider } from '@material-ui/core';
 
 import singularOrPlural from 'utils/singularOrPlural';
 
-import { PizzasGrid, Img } from './styles';
+import { PizzasGrid, Img, CardLabel, CardTitle } from './styles';
 
 import pizzaFlavours from 'data/flavours';
 
@@ -32,12 +32,18 @@ const Flavours = ({ location }) => {
           {pizzaFlavours.map((item) => (
             <Grid item key={item.id} xs>
                 <Card>
-                  <Img src={item.image} alt={item.name} />
+                  <CardLabel>
+                    <input type="checkbox" />
 
-                  <Divider />
+                    <Img src={item.image} alt={item.name} />
 
-                  <Typography>{item.name}</Typography>
-                  <Typography variant='h5'>{item.value[id]}</Typography>
+                    <Divider />
+
+                    <CardTitle>
+                    <Typography>{item.name}</Typography></CardTitle>
+
+                    <Typography variant='h5'>{item.value[id]}</Typography>
+                  </CardLabel>
                 </Card>
             </Grid>
           ))}
