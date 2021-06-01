@@ -1,5 +1,7 @@
 import React, { useContext } from 'react';
 
+import { FLAVOURS } from 'routes';
+
 import {
   Typography,
   Grid,
@@ -7,19 +9,20 @@ import {
   Divider,
   Card,
   CardActionArea
- } from '@material-ui/core';
+} from '@material-ui/core';
 
- import {
+
+import { AuthContext } from 'contexts/auth';
+
+import pizzaSizes from 'data'
+
+import {
   CardPizzaArea,
   MaterialDivider,
   Pizza,
   PizzaText,
   PizzasGrid
 } from './styles';
-
-import { AuthContext } from 'contexts/auth';
-
-import pizzaSizes from 'data'
 
 const Pizzas = () => {
   const { userInfo } = useContext(AuthContext);
@@ -43,7 +46,7 @@ const Pizzas = () => {
                 <Card>
                   <CardActionArea>
 
-                    <CardPizzaArea to={{ pathname: '/flavours', state: item }}>
+                    <CardPizzaArea to={{ pathname: FLAVOURS, state: item }}>
                       <Pizza>
                         <PizzaText>{item.size}cm</PizzaText>
                       </Pizza>

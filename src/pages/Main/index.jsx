@@ -1,6 +1,8 @@
 import React, { lazy, Suspense } from 'react';
 import { Switch, Route } from 'react-router-dom';
 
+import { HOME, FLAVOURS } from 'routes';
+
 import { withStyles } from '@material-ui/core';
 
 import { Content } from './styles';
@@ -17,8 +19,8 @@ const Main = () => (
     <Content>
       <Suspense fallback='Carregando...'>
         <Switch>
-          <Route path='/' exact component={Pizzas} />
-          <Route path='/flavours' component={Flavours} />
+          <Route path={HOME} exact component={Pizzas} />
+          <Route path={FLAVOURS} component={Flavours} />
         </Switch>
       </Suspense>
     </Content>
