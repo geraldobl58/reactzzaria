@@ -1,10 +1,17 @@
-import React, { useState } from 'react';
-import { Redirect } from 'react-router-dom';
+import React, { useState, useContext } from 'react';
+import { Link, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-import { HOME } from 'routes';
+import { HOME, PIZZA_QUANTITY } from 'routes';
 
-import { Typography, Grid, Card, Divider, Container } from '@material-ui/core';
+import {
+  Typography,
+  Grid,
+  Card,
+  Divider,
+  Container,
+  Button
+} from '@material-ui/core';
 
 import singularOrPlural from 'utils/singularOrPlural';
 import toMoney from 'utils/toMoney';
@@ -18,19 +25,25 @@ import {
   Checkbox,
   Footer,
   Content,
-  Title
+  Title,
+  OrderContainer,
+  Buttons
 } from './styles';
+
+import { AuthContext } from 'contexts/auth';
 
 import pizzaFlavours from 'data/flavours';
 
 const Flavours = ({ location }) => {
   const [checkboxes, setCheckboxes] = useState(() => ({}));
 
+  const { userInfo } = useContext(AuthContext);
+
   if (!location.state) {
     return <Redirect to={HOME}  />
   }
 
-  const { flavours, id } = location.state;
+  const { flavours, id, name, slices } = location.state;
 
   const handleChangeCheckbox = (pizzaId) => (e) => {
     if (checkboxChecked(checkboxes).length === flavours
@@ -90,7 +103,38 @@ const Flavours = ({ location }) => {
 
       <Footer>
         <Container>
-          Footer
+          <Grid container>
+              <OrderContainer>
+                <Grid item>
+                  <Typography><b>{userInfo.user.displayName}</b> seu pedido é:</Typography>
+                  <Typography>
+                    Pizza <b>{name.toUpperCase()}</b> -
+                    ({slices} {singularOrPlural(slices, 'fatia', 'fatias')}, {' '}
+                    {flavours} {singularOrPlural(flavours, 'sabor', 'sabores')})
+                  </Typography>
+                </Grid>
+              </OrderContainer>
+              <Grid item>
+                <Buttons>
+                  <Link to={HOME}>
+                    <Button
+                      variant='contained'
+                      style={{ marginRight: 10 }}
+                    >
+                      Mudar tamanho
+                    </Button>
+                  </Link>
+                  <Link to={PIZZA_QUANTITY}>
+                    <Button
+                      variant='contained'
+                      color='primary'
+                    >
+                      Quantas pizzas?
+                    </Button>
+                  </Link>
+                </Buttons>
+              </Grid>
+          </Grid>
         </Container>
       </Footer>
     </React.Fragment>

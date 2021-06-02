@@ -54,3 +54,12 @@ export const Content = styled.main`
 export const Title = styled.div`
   padding: 80px 20px 20px;
 `
+
+export const OrderContainer = styled.div`
+  flex-grow: 1;
+`
+export const Buttons = styled.div`
+  a {
+    text-decoration: none;
+  }
+`
