@@ -13,6 +13,7 @@ import { AuthContext } from 'contexts/auth';
 const MainPage = lazy(() => import('pages/Main'))
 const Login = lazy(() => import('pages/Login'))
 
+
 function App({ location }) {
   const [didCheckUserIn, setDidCheckUserIn]  = useState(false);
   const { userInfo, setUserInfo, logout } = useContext(AuthContext);
