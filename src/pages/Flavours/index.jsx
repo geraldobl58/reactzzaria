@@ -95,12 +95,11 @@ const Flavours = ({ location }) => {
       </Content>
 
       <Footer
-        buttons={[
-          {
-            to: HOME,
+        buttons={{
+          back: {
             children: 'Mudar tamanho'
           },
-          {
+          action: {
             to: {
               pathname: PIZZA_QUANTITY,
               state: {
@@ -108,10 +107,9 @@ const Flavours = ({ location }) => {
                 pizzaFlavours: getFlavoursNameAndId(checkboxes)
               }
             },
-            children: 'Quantas pizzas?',
-            color: 'primary'
+            children: 'Quantas pizzas?'
           }
-        ]}
+        }}
       />
     </React.Fragment>
   )

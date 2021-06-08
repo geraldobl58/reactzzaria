@@ -15,7 +15,7 @@ import singularOrPlural from 'utils/singularOrPlural';
 
 import { FooterContainer, OrderContainer, Buttons } from './styles';
 
-function Footer({ buttons, location }) {
+function Footer({ buttons, history, location }) {
   const { userInfo } = useAuth();
 
   const { pizzaSize, pizzaFlavours } = location.state;
@@ -43,13 +43,24 @@ function Footer({ buttons, location }) {
               </Grid>
             </OrderContainer>
             <Grid item>
-              {buttons.map((button) => (
-                <Button>
-                  <Buttons>
-                    <Link key={button.to} {...button} />
-                  </Buttons>
-                </Button>
-              ))}
+              <Buttons>
+                <Button
+                  {...buttons.back}
+                  component='a'
+                  variant="contained"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    history.goBack();
+                  }}
+                />
+
+                <Button
+                  {...buttons.action}
+                  component={Link}
+                  variant="contained"
+                  color='primary'
+                />
+              </Buttons>
             </Grid>
         </Grid>
       </Container>
@@ -58,7 +69,8 @@ function Footer({ buttons, location }) {
 }
 
 Footer.propTypes = {
-  buttons: PropTypes.array.isRequired,
+  buttons: PropTypes.object.isRequired,
+  history: PropTypes.object.isRequired,
   location: PropTypes.object.isRequired,
 }
 

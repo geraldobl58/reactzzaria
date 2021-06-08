@@ -14,14 +14,6 @@ export const OrderContainer = styled.div`
 
 export const Buttons = styled.div`
   a {
-    text-decoration: none;
-    background: #3f51b5;
-    color: #fff;
-    padding: 10px;
-    border-radius: 5px;
-
-    &:hover {
-      color: #ccc;
-    }
+    margin-right: 20px;
   }
 `

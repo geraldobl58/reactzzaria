@@ -2,8 +2,6 @@ import React from 'react';
 
 import { Typography, Grid, Input } from '@material-ui/core';
 
-import { FLAVOURS } from 'routes';
-
 import Footer from 'components/Footer';
 
 import { Title, MaterialInput } from './styles';
@@ -25,16 +23,15 @@ function Quantity() {
       </MaterialInput>
 
       <Footer
-        buttons={[
-          {
-            to: FLAVOURS,
+        buttons={{
+          back: {
             children: 'Mudar sabores'
           },
-          {
+          action: {
             to: '/',
             children: 'Finalizar compra'
           }
-        ]}
+        }}
       />
     </React.Fragment>
   )
