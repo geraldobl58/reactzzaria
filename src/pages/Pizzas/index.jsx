@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 
 import { FLAVOURS } from 'routes';
 
@@ -11,7 +11,7 @@ import {
   CardActionArea
 } from '@material-ui/core';
 
-import { AuthContext } from 'contexts/auth';
+import { useAuth } from 'hooks';
 
 import pizzaSizes from 'data/sizes'
 
@@ -27,7 +27,7 @@ import {
 import singularOrPlural from 'utils/singularOrPlural';
 
 const Pizzas = () => {
-  const { userInfo } = useContext(AuthContext);
+  const { userInfo } = useAuth();
 
   return (
     <Content>

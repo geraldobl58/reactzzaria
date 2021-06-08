@@ -1,4 +1,5 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 import {
   AppBar,
@@ -11,15 +12,16 @@ import {
 
 import { AccountCircle } from '@material-ui/icons';
 
-import { AuthContext } from 'contexts/auth';
+import { HOME } from 'routes';
+
+import { useAuth } from 'hooks';
 
 import { Logo, LogoContainer, MaterialToolbar } from './styles';
 
 const Header = () => {
   const [anchorElement, setAnchorElement] = useState(null);
 
-  const { userInfo, logout } = useContext(AuthContext);
-
+  const { userInfo, logout } = useAuth();
 
   const handleOpenMenu = (e) => {
     setAnchorElement(e.target);
@@ -34,7 +36,9 @@ const Header = () => {
       <MaterialToolbar>
         <Toolbar>
           <LogoContainer>
-            <Logo />
+            <Link to={HOME}>
+              <Logo />
+            </Link>
           </LogoContainer>
 
           <Typography
