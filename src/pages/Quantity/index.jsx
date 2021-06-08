@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
@@ -6,13 +6,23 @@ import { Typography, Grid, Input } from '@material-ui/core';
 
 import Footer from 'components/Footer';
 
-import { HOME } from 'routes';
+import { HOME, CHECKOUT } from 'routes';
 
 import { Title, MaterialInput } from './styles';
 
 function Quantity({ location }) {
+  const [quantity, setQuantity] = useState(1);
+
   if (!location.state) {
     return <Redirect to={HOME} />
+  }
+
+  function handleChange(e) {
+    const { value } = e.target;
+
+    if (value >= 1) {
+      setQuantity(e.target.value)
+    }
   }
 
   return (
@@ -26,7 +36,12 @@ function Quantity({ location }) {
         </Title>
       </Grid>
       <MaterialInput>
-        <Input type='number' defaultValue='1' autoFocus />
+        <Input
+          type='number'
+          value={quantity}
+          onChange={handleChange}
+          autoFocus
+        />
       </MaterialInput>
 
       <Footer
@@ -35,7 +50,7 @@ function Quantity({ location }) {
             children: 'Mudar sabores'
           },
           action: {
-            to: '/',
+            to: CHECKOUT,
             children: 'Finalizar compra'
           }
         }}
