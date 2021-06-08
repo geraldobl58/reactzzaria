@@ -1,7 +1,7 @@
 /* eslint-disable import/no-anonymous-default-export */
 export default [
   {
-    id: 1,
+    id: '1',
     image: '/data/images/pizza-calabresa.png',
     name: 'Calabresa',
     value: {
@@ -11,7 +11,7 @@ export default [
     }
   },
   {
-    id: 2,
+    id: '2',
     image: '/data/images/pizza-frango-catupiry.png',
     name: 'Frango com Catupiry',
     value: {
@@ -21,7 +21,7 @@ export default [
     }
   },
   {
-    id: 3,
+    id: '3',
     image: '/data/images/pizza-prestigio.jpg',
     name: 'Prestígio',
     value: {

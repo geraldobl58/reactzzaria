@@ -1,8 +1,6 @@
 import React from 'react';
-import { withRouter ,Link } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-
-import { HOME, PIZZA_QUANTITY } from 'routes';
 
 import {
   Typography,
@@ -15,16 +13,13 @@ import { useAuth } from 'hooks';
 
 import singularOrPlural from 'utils/singularOrPlural';
 
-import {
-  FooterContainer,
-  OrderContainer,
-  Buttons
-} from './styles';
+import { FooterContainer, OrderContainer, Buttons } from './styles';
 
-function Footer({ location }) {
+function Footer({ buttons, location }) {
   const { userInfo } = useAuth();
 
-  const { name, slices, flavours } = location.state;
+  const { pizzaSize, pizzaFlavours } = location.state;
+  const { name, slices, flavours } = pizzaSize;
 
   return (
     <FooterContainer>
@@ -38,27 +33,23 @@ function Footer({ location }) {
                   ({slices} {singularOrPlural(slices, 'fatia', 'fatias')}, {' '}
                   {flavours} {singularOrPlural(flavours, 'sabor', 'sabores')})
                 </Typography>
+
+                {pizzaFlavours && (
+                  <Typography>
+                    {singularOrPlural(pizzaFlavours.length, 'no sabor', 'nos sabores')}{' '}
+                    <b>{pizzaFlavours.map(({ name }) => name).join(', ')}</b>
+                  </Typography>
+                )}
               </Grid>
             </OrderContainer>
             <Grid item>
-              <Buttons>
-                <Link to={HOME}>
-                  <Button
-                    variant='contained'
-                    style={{ marginRight: 10 }}
-                  >
-                    Mudar tamanho
-                  </Button>
-                </Link>
-                <Link to={PIZZA_QUANTITY}>
-                  <Button
-                    variant='contained'
-                    color='primary'
-                  >
-                    Quantas pizzas?
-                  </Button>
-                </Link>
-              </Buttons>
+              {buttons.map((button) => (
+                <Button>
+                  <Buttons>
+                    <Link key={button.to} {...button} />
+                  </Buttons>
+                </Button>
+              ))}
             </Grid>
         </Grid>
       </Container>
@@ -67,7 +58,8 @@ function Footer({ location }) {
 }
 
 Footer.propTypes = {
-  location: PropTypes.object.isRequired
+  buttons: PropTypes.array.isRequired,
+  location: PropTypes.object.isRequired,
 }
 
 export default withRouter(Footer);

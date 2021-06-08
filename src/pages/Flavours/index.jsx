@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-import { HOME } from 'routes';
+import { HOME, PIZZA_QUANTITY } from 'routes';
 
 import {
   Typography,
@@ -36,7 +36,7 @@ const Flavours = ({ location }) => {
     return <Redirect to={HOME}  />
   }
 
-  const { flavours, id } = location.state;
+  const { flavours, id } = location.state.pizzaSize;
 
   const handleChangeCheckbox = (pizzaId) => (e) => {
     if (checkboxChecked(checkboxes).length === flavours
@@ -94,7 +94,25 @@ const Flavours = ({ location }) => {
         </PizzasGrid>
       </Content>
 
-      <Footer />
+      <Footer
+        buttons={[
+          {
+            to: HOME,
+            children: 'Mudar tamanho'
+          },
+          {
+            to: {
+              pathname: PIZZA_QUANTITY,
+              state: {
+                ...location.state,
+                pizzaFlavours: getFlavoursNameAndId(checkboxes)
+              }
+            },
+            children: 'Quantas pizzas?',
+            color: 'primary'
+          }
+        ]}
+      />
     </React.Fragment>
   )
 }
@@ -105,6 +123,15 @@ Flavours.propTypes = {
 
 function checkboxChecked(checkboxes) {
   return Object.values(checkboxes).filter(Boolean);
+}
+
+function getFlavoursNameAndId(checkboxes) {
+  return Object.entries(checkboxes)
+    .filter(([, value]) => !!value)
+    .map(([id]) => ({
+      id,
+      name: pizzaFlavours.find((flavour) => flavour.id === id).name
+    }));
 }
 
 export default Flavours;
