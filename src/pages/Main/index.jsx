@@ -1,7 +1,7 @@
 import React, { lazy, Suspense } from 'react';
 import { Switch, Route } from 'react-router-dom';
 
-import { HOME, FLAVOURS } from 'routes';
+import * as routes from 'routes';
 
 import { withStyles } from '@material-ui/core';
 
@@ -9,6 +9,7 @@ import Header from 'components/Header';
 
 const Pizzas = lazy(() => import('pages/Pizzas'));
 const Flavours = lazy(() => import('pages/Flavours'));
+const Quantity = lazy(() => import('pages/Quantity'));
 
 const Main = () => (
   <React.Fragment>
@@ -16,8 +17,9 @@ const Main = () => (
       <Spacer />
       <Suspense fallback='Carregando...'>
         <Switch>
-          <Route path={HOME} exact component={Pizzas} />
-          <Route path={FLAVOURS} component={Flavours} />
+          <Route path={routes.HOME} exact component={Pizzas} />
+          <Route path={routes.FLAVOURS} component={Flavours} />
+          <Route path={routes.PIZZA_QUANTITY} component={Quantity} />
         </Switch>
       </Suspense>
   </React.Fragment>
