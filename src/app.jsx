@@ -6,14 +6,12 @@ import { HOME, LOGIN } from 'routes';
 
 import { LinearProgress } from '@material-ui/core';
 
-
 import firebase from 'services/firebase';
 
 import { AuthContext } from 'contexts/auth';
 
 const MainPage = lazy(() => import('pages/Main'))
 const Login = lazy(() => import('pages/Login'))
-
 
 function App({ location }) {
   const [didCheckUserIn, setDidCheckUserIn]  = useState(false);
