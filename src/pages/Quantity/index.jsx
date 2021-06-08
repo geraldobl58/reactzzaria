@@ -10,8 +10,6 @@ import { HOME } from 'routes';
 
 import { Title, MaterialInput } from './styles';
 
-
-
 function Quantity({ location }) {
   if (!location.state) {
     return <Redirect to={HOME} />
