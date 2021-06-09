@@ -3,7 +3,7 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 import { CssBaseline, createMuiTheme, MuiThemeProvider } from '@material-ui/core';
 
-import AuthProvider from 'contexts/auth';
+import { AuthProvider, OrderProvider } from 'contexts';
 
 import { GlobalStyles } from 'styles/global';
 
@@ -20,11 +20,13 @@ function Root() {
     <MuiThemeProvider theme={theme}>
       <ThemeProvider theme={theme}>
         <AuthProvider>
-          <CssBaseline />
-          <GlobalStyles />
-            <BrowserRouter>
-            <Route component={App} />
-          </BrowserRouter>
+          <OrderProvider>
+            <CssBaseline />
+            <GlobalStyles />
+              <BrowserRouter>
+              <Route component={App} />
+            </BrowserRouter>
+          </OrderProvider>
         </AuthProvider>
         </ThemeProvider>
     </MuiThemeProvider>
