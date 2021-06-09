@@ -51,7 +51,7 @@ function Quantity({ location }) {
           },
           action: {
             to: CHECKOUT,
-            children: 'Finalizar compra'
+            children: 'Finalizar'
           }
         }}
       />
