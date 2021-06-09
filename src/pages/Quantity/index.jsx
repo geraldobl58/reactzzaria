@@ -2,13 +2,13 @@ import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-import { Typography, Grid, Input } from '@material-ui/core';
+import { Typography, Grid, Input, Button } from '@material-ui/core';
 
 import Footer from 'components/Footer';
 
 import { HOME, CHECKOUT } from 'routes';
 
-import { Title, MaterialInput } from './styles';
+import { Title, MaterialContent } from './styles';
 
 function Quantity({ location }) {
   const [quantity, setQuantity] = useState(1);
@@ -35,14 +35,19 @@ function Quantity({ location }) {
           </Typography>
         </Title>
       </Grid>
-      <MaterialInput>
+      <MaterialContent>
         <Input
           type='number'
           value={quantity}
           onChange={handleChange}
           autoFocus
         />
-      </MaterialInput>
+        <Button variant='contained' color='secondary'>
+          Adicionar e<br /> montar outra
+        </Button>
+      </MaterialContent>
+
+
 
       <Footer
         buttons={{

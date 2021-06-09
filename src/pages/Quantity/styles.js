@@ -4,9 +4,10 @@ export const Title = styled.div`
   padding: 80px 20px 20px;
 `
 
-export const MaterialInput = styled.div`
+export const MaterialContent = styled.div`
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   margin-top: ${({ theme }) => theme.spacing(2)}px;
 
   input {
@@ -14,5 +15,9 @@ export const MaterialInput = styled.div`
     padding: 10px;
     text-align: center;
     width: 150px;
+  }
+
+  button {
+    margin-top: ${({ theme }) => theme.spacing(2)}px;
   }
 `
