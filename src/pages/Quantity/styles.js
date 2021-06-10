@@ -17,7 +17,8 @@ export const MaterialContent = styled.div`
     width: 150px;
   }
 
-  button {
+  a {
+    text-align: center;
     margin-top: ${({ theme }) => theme.spacing(2)}px;
   }
 `

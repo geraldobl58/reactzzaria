@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Redirect } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import { Typography, Grid, Input, Button } from '@material-ui/core';
@@ -8,10 +8,14 @@ import Footer from 'components/Footer';
 
 import { HOME, CHECKOUT } from 'routes';
 
+import { useOrder } from 'hooks';
+
 import { Title, MaterialContent } from './styles';
 
 function Quantity({ location }) {
   const [quantity, setQuantity] = useState(1);
+
+  const { addPizzaToOrder } = useOrder();
 
   if (!location.state) {
     return <Redirect to={HOME} />
@@ -23,6 +27,14 @@ function Quantity({ location }) {
     if (value >= 1) {
       setQuantity(e.target.value)
     }
+  }
+
+  function addPizza() {
+    addPizzaToOrder({
+      size: location.state.pizzaSize.id,
+      flavours: location.state.pizzaFlavours.map(f => f.id),
+      quantity
+    })
   }
 
   return (
@@ -42,12 +54,15 @@ function Quantity({ location }) {
           onChange={handleChange}
           autoFocus
         />
-        <Button variant='contained' color='secondary'>
+        <Button
+          variant='contained'
+          color='secondary'
+          component={Link}
+          onClick={addPizza}
+        >
           Adicionar e<br /> montar outra
         </Button>
       </MaterialContent>
-
-
 
       <Footer
         buttons={{
@@ -56,6 +71,7 @@ function Quantity({ location }) {
           },
           action: {
             to: CHECKOUT,
+            onClick: addPizza,
             children: 'Finalizar'
           }
         }}
