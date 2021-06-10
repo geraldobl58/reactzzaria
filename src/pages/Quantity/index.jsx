@@ -57,6 +57,7 @@ function Quantity({ location }) {
         <Button
           variant='contained'
           color='secondary'
+          to={HOME}
           component={Link}
           onClick={addPizza}
         >
