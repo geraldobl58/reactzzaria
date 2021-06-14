@@ -5,10 +5,23 @@ import { useOrder } from 'hooks';
 
 import singularOrPlural from 'utils/singularOrPlural';
 
-import {  Grid, Typography, List, ListItem } from '@material-ui/core';
+import {
+  Grid,
+  Typography,
+  List,
+  ListItem,
+  Button
+} from '@material-ui/core';
 
-import { Content, PaperContainer, MaterialTextField } from './styles';
 import Footer from 'components/Footer';
+
+import {
+  Content,
+  PaperContainer,
+  MaterialTextField,
+  FooterContainer
+} from './styles';
+
 
 function Checkout() {
   const { order } = useOrder();
@@ -46,7 +59,7 @@ function Checkout() {
                     return (
                       <ListItem key={index}>
                         <Typography>
-                          {quantity} {' '}
+                          <b>{quantity}</b> {' '}
                           {singularOrPlural(quantity, 'pizza', 'pizzas')} {' '}
                           <b>{name.toUpperCase()}</b> -
                           ({slices} {singularOrPlural(slices, 'fatia', 'fatias')}, {' '}
@@ -66,7 +79,13 @@ function Checkout() {
         </Grid>
       </Content>
 
-      <Footer>Footer Checkout</Footer>
+      <Footer>
+        <FooterContainer>
+          <Button variant="contained" color="primary">
+            Confirmar dados
+          </Button>
+        </FooterContainer>
+      </Footer>
     </>
   )
 }

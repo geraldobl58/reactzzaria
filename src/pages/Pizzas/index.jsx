@@ -15,14 +15,16 @@ import { useAuth } from 'hooks';
 
 import pizzaSizes from 'data/sizes'
 
+import Content from 'components/Content';
+
 import {
-  Content,
   CardPizzaArea,
   MaterialDivider,
   Pizza,
   PizzaText,
   PizzasGrid
 } from './styles';
+
 
 import singularOrPlural from 'utils/singularOrPlural';
 

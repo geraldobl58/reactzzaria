@@ -23,11 +23,11 @@ import {
   CardTitle,
   MaterialCard,
   Checkbox,
-  Content,
   Title
 } from './styles';
 
 import pizzaFlavours from 'data/flavours';
+import Content from 'components/Content';
 
 const Flavours = ({ location }) => {
   const [checkboxes, setCheckboxes] = useState(() => ({}));
