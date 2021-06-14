@@ -11,8 +11,6 @@ import { Content, PaperContainer, MaterialTextField } from './styles';
 
 function Checkout() {
   const { order } = useOrder();
-  console.log('ORDER', order)
-
 
   return (
     <Content>
