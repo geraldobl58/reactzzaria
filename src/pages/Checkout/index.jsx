@@ -2,20 +2,15 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-import { useOrder } from 'hooks';
-
-import singularOrPlural from 'utils/singularOrPlural';
-
 import {
   Grid,
   Typography,
-  List,
-  ListItem,
   Button
 } from '@material-ui/core';
 
 import Footer from 'components/Footer';
 import Content from 'components/Content';
+import OrderInfo from 'components/OrderInfo';
 
 import { CHECKOUT_CONFIRMATION } from 'routes';
 
@@ -25,11 +20,7 @@ import {
   FooterContainer
 } from './styles';
 
-
-
 function Checkout() {
-  const { order } = useOrder();
-
   return (
     <>
       <Content>
@@ -55,29 +46,7 @@ function Checkout() {
           <Grid container item xs={12} md={6} direction='column'>
             <Typography variant='h6'>Informações do seu pedido?</Typography>
               <PaperContainer>
-                <List>
-                  {order.pizzas.map((pizza, index) => {
-                    const { pizzaFlavours, pizzaSize, quantity } = pizza;
-                    const { name, slices, flavours } = pizzaSize;
-
-                    return (
-                      <ListItem key={index}>
-                        <Typography>
-                          <b>{quantity}</b> {' '}
-                          {singularOrPlural(quantity, 'pizza', 'pizzas')} {' '}
-                          <b>{name.toUpperCase()}</b> -
-                          ({slices} {singularOrPlural(slices, 'fatia', 'fatias')}, {' '}
-                          {flavours} {singularOrPlural(flavours, 'sabor', 'sabores')})
-
-                          <br />
-
-                          {singularOrPlural(pizzaFlavours.length, 'no sabor', 'nos sabores')}{' '}
-                          <b>{pizzaFlavours.map(({ name }) => name).join(', ')}</b>
-                        </Typography>
-                      </ListItem>
-                    )
-                  })}
-                </List>
+                <OrderInfo />
               </PaperContainer>
           </Grid>
         </Grid>
