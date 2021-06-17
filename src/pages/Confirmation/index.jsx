@@ -8,6 +8,7 @@ import { Title } from './styles';
 
 import { useAuth } from 'hooks';
 
+
 function CheckoutConfirmation() {
   const { userInfo } = useAuth();
 
