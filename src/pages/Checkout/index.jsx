@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import { useOrder } from 'hooks';
@@ -14,13 +15,16 @@ import {
 } from '@material-ui/core';
 
 import Footer from 'components/Footer';
+import Content from 'components/Content';
+
+import { CHECKOUT_CONFIRMATION } from 'routes';
 
 import {
-  Content,
   PaperContainer,
   MaterialTextField,
   FooterContainer
 } from './styles';
+
 
 
 function Checkout() {
@@ -81,7 +85,12 @@ function Checkout() {
 
       <Footer>
         <FooterContainer>
-          <Button variant="contained" color="primary">
+          <Button
+            variant="contained"
+            color="primary"
+            component={Link}
+            to={CHECKOUT_CONFIRMATION}
+          >
             Confirmar dados
           </Button>
         </FooterContainer>
