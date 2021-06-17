@@ -7,13 +7,13 @@ import Content from 'components/Content';
 import OrderInfo from 'components/OrderInfo';
 import FooterCheckout from 'components/FooterCheckout';
 
-import { CHECKOUT_SUCCESS } from 'routes';
+import { HOME } from 'routes';
 
 import { Typography, Paper, Container, Button } from '@material-ui/core';
 
 import { Title, PaperContainer, MaterialDivider } from './styles';
 
-function CheckoutConfirmation() {
+function CheckoutSuccess() {
   const { userInfo } = useAuth();
 
   return (
@@ -21,10 +21,13 @@ function CheckoutConfirmation() {
       <Content>
         <Title>
           <Typography variant="h4" gutterBottom>
-            Oi {userInfo.user.firstName}!
+            Prontinho {userInfo.user.firstName}!
           </Typography>
           <Typography variant="body1" gutterBottom>
-            Confere, por favor, se está tudo certo com seu pedido antes de finalizar?
+            Seu pedido será entregue no endereço abaixo em até:
+          </Typography>
+          <Typography variant="h3" gutterBottom>
+            40 minutos
           </Typography>
         </Title>
         <Container maxWidth='sm'>
@@ -55,17 +58,16 @@ function CheckoutConfirmation() {
 
       <FooterCheckout justifyContent='center'>
         <Button
-          variant="contained"
-          color="primary"
+          color="secondary"
           size="large"
           component={Link}
-          to={CHECKOUT_SUCCESS}
+          to={HOME}
         >
-          Tudo certo!
+          {'<'} Voltar para a Página Inicial
         </Button>
       </FooterCheckout>
     </>
   )
 }
 
-export default CheckoutConfirmation;
+export default CheckoutSuccess;

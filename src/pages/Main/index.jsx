@@ -12,6 +12,7 @@ const Flavours = lazy(() => import('pages/Flavours'));
 const Quantity = lazy(() => import('pages/Quantity'));
 const Checkout = lazy(() => import('pages/Checkout'));
 const Confirmation = lazy(() => import('pages/Confirmation'));
+const Success = lazy(() => import('pages/Success'));
 
 const Main = () => (
   <React.Fragment>
@@ -24,6 +25,7 @@ const Main = () => (
           <Route path={routes.PIZZA_QUANTITY} component={Quantity} />
           <Route exact path={routes.CHECKOUT} component={Checkout} />
           <Route path={routes.CHECKOUT_CONFIRMATION} component={Confirmation} />
+          <Route path={routes.CHECKOUT_SUCCESS} component={Success} />
         </Switch>
       </Suspense>
   </React.Fragment>
