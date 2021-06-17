@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import { useAuth } from 'hooks';
+import { useAuth, useOrder } from 'hooks';
 
 import Content from 'components/Content';
 import OrderInfo from 'components/OrderInfo';
@@ -15,6 +15,7 @@ import { Title, PaperContainer, MaterialDivider } from './styles';
 
 function CheckoutConfirmation() {
   const { userInfo } = useAuth();
+  const { sendOrder } = useOrder();
 
   return (
     <>
@@ -60,6 +61,7 @@ function CheckoutConfirmation() {
           size="large"
           component={Link}
           to={CHECKOUT_SUCCESS}
+          onClick={sendOrder}
         >
           Tudo certo!
         </Button>

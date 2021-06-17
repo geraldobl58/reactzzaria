@@ -42,7 +42,7 @@ function Checkout() {
           <Grid container item xs={12} md={6} direction='column'>
             <Typography variant='h6'>Informações do seu pedido?</Typography>
               <PaperContainer>
-                <OrderInfo />
+                <OrderInfo showOptions />
               </PaperContainer>
           </Grid>
         </Grid>
