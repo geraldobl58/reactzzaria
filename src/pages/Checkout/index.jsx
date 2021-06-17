@@ -8,17 +8,13 @@ import {
   Button
 } from '@material-ui/core';
 
-import Footer from 'components/Footer';
 import Content from 'components/Content';
 import OrderInfo from 'components/OrderInfo';
+import FooterCheckout from 'components/FooterCheckout';
 
 import { CHECKOUT_CONFIRMATION } from 'routes';
 
-import {
-  PaperContainer,
-  MaterialTextField,
-  FooterContainer
-} from './styles';
+import { PaperContainer, MaterialTextField, } from './styles';
 
 function Checkout() {
   return (
@@ -52,18 +48,16 @@ function Checkout() {
         </Grid>
       </Content>
 
-      <Footer>
-        <FooterContainer>
-          <Button
-            variant="contained"
-            color="primary"
-            component={Link}
-            to={CHECKOUT_CONFIRMATION}
-          >
-            Confirmar dados
-          </Button>
-        </FooterContainer>
-      </Footer>
+      <FooterCheckout>
+        <Button
+          variant="contained"
+          color="primary"
+          component={Link}
+          to={CHECKOUT_CONFIRMATION}
+        >
+          Confirmar dados
+        </Button>
+      </FooterCheckout>
     </>
   )
 }

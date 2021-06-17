@@ -13,8 +13,3 @@ export const PaperContainer  = styled(Paper)`
 `
 
 export const MaterialTextField = styled(TextField)``
-
-export const FooterContainer = styled.div`
-  display: flex;
-  justify-content: flex-end;
-`
