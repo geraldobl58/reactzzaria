@@ -1,13 +1,32 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import TextField from 'components/TextField';
 
 import { Grid } from '@material-ui/core';
 
 function FormAddress() {
+  const [cep, setCep] = useState('');
+
+  function handleChangeCep(e) {
+    setCep(cepMask(e.target.value));
+  }
+
+  function cepMask(value) {
+    return value
+      .replace(/\D+/g, '')
+      .replace(/(\d{5})(\d)/, '$1-$2')
+      .replace(/(-\d{3})\d+?$/, '$1');
+  }
+
   return (
     <Grid container spacing={2}>
-      <TextField label='CEP' xs={4} autoFocus />
+      <TextField
+        label='CEP'
+        xs={4}
+        autoFocus
+        value={cep}
+        onChange={handleChangeCep}
+      />
       <Grid item xs={8} />
       <TextField label='Rua' xs={9} />
       <TextField label='Número' xs={3} />
