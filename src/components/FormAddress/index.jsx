@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import TextField from 'components/TextField';
 
@@ -6,6 +6,21 @@ import { Grid } from '@material-ui/core';
 
 function FormAddress() {
   const [cep, setCep] = useState('');
+
+  useEffect(() => {
+    async function fetchAddress() {
+      if (cep.length < 9) {
+        return;
+      }
+
+      const data = await fetch(`https://ws.apicep.com/cep/${cep}.json`);
+
+      const result = await data.json();
+      console.log(result);
+    }
+
+    fetchAddress();
+  }, [cep]);
 
   function handleChangeCep(e) {
     setCep(cepMask(e.target.value));
