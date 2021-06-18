@@ -16,7 +16,7 @@ import { Close } from '@material-ui/icons';
 import { MaterialList } from './styles';
 
 function OrderInfo({ showOptions }) {
-  const { order } = useOrder();
+  const { order, removePizzaFromOrder } = useOrder();
 
   return (
     <List>
@@ -25,7 +25,7 @@ function OrderInfo({ showOptions }) {
         const { name, slices, flavours } = pizzaSize;
 
         return (
-          <MaterialList key={index}>
+          <MaterialList key={pizza.id}>
             <Typography>
               <b>{quantity}</b> {' '}
               {singularOrPlural(quantity, 'pizza', 'pizzas')} {' '}
@@ -40,7 +40,11 @@ function OrderInfo({ showOptions }) {
             </Typography>
 
             {showOptions && (
-              <IconButton title="Remover" color="secondary">
+              <IconButton
+                title="Remover"
+                color="secondary"
+                onClick={() => removePizzaFromOrder(pizza.id)}
+              >
                 <Close />
               </IconButton>
             )}
