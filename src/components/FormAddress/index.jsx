@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useReducer } from 'react';
+import React, { useState, useEffect, useReducer, useRef } from 'react';
 
 import TextField from 'components/TextField';
 
@@ -8,6 +8,7 @@ function FormAddress() {
   const [cep, setCep] = useState('');
   const [addressState, dispatch] = useReducer(reducer, initialState);
   const [fetchingCep, setFetchingCep] = useState(false);
+  const numberField = useRef();
 
   useEffect(() => {
     async function fetchAddress() {
@@ -24,6 +25,8 @@ function FormAddress() {
         type: 'UPDATE_FULL_ADDRESS',
         payload: result
       });
+
+      numberField.current.focus();
     }
 
     fetchAddress();
@@ -41,7 +44,12 @@ function FormAddress() {
   }
 
   function handleChangeField(e) {
+    const { name, value } = e.target;
 
+    dispatch({
+      type: 'UPDATE_FIELD',
+      payload: { name, value }
+    });
   }
 
   return (
@@ -67,6 +75,7 @@ function FormAddress() {
           label: 'Número',
           xs: 3,
           name: 'number',
+          inputRef: numberField
         },
         {
 
@@ -106,6 +115,14 @@ function reducer(state, action) {
       ...action.payload
     }
   }
+
+  if (action.type === 'UPDATE_FIELD') {
+    return {
+      ...state,
+      [action.payload.name]: action.payload.value
+    }
+  }
+
   return state;
 }
 
