@@ -11,7 +11,7 @@ import Content from 'components/Content';
 import OrderInfo from 'components/OrderInfo';
 import FooterCheckout from 'components/FooterCheckout';
 import FormAddress from 'components/FormAddress';
-import TextField from 'components/TextField';
+import PhoneField from 'components/PhoneField';
 
 import { CHECKOUT_CONFIRMATION, HOME } from 'routes';
 
@@ -37,7 +37,7 @@ function Checkout() {
               </PaperContainer>
             <Typography variant='h6'>Qual o seu telefone?</Typography>
               <PaperContainer>
-                <TextField label='Telefone' xs={4} />
+                <PhoneField />
               </PaperContainer>
           </Grid>
           <Grid container item xs={12} md={6} direction='column'>
