@@ -20,7 +20,7 @@ import { useOrder } from 'hooks';
 import { PaperContainer } from './styles';
 
 function Checkout() {
-  const { order } = useOrder();
+  const { order, addPhone, addAddress } = useOrder();
 
   if (!order.pizzas.length) {
     return <Redirect to={HOME} />
@@ -33,11 +33,11 @@ function Checkout() {
           <Grid item xs={12} md={6}>
             <Typography variant='h6'>Qual o endereço para entrega?</Typography>
               <PaperContainer>
-                <FormAddress />
+                <FormAddress onUpdate={addAddress} />
               </PaperContainer>
             <Typography variant='h6'>Qual o seu telefone?</Typography>
               <PaperContainer>
-                <PhoneField />
+                <PhoneField onUpdate={addPhone} />
               </PaperContainer>
           </Grid>
           <Grid container item xs={12} md={6} direction='column'>
