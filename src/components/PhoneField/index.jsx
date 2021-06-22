@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { TextField } from '@material-ui/core';
 
 function PhoneField() {
-  const [phone, setPhone] = useState();
+  const [phone, setPhone] = useState('');
 
   function handleChangePhone(e) {
     setPhone(phoneMask(e.target.value));
