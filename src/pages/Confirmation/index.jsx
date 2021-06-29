@@ -15,7 +15,7 @@ import { Title, PaperContainer, MaterialDivider } from './styles';
 
 function CheckoutConfirmation() {
   const { userInfo } = useAuth();
-  const { sendOrder } = useOrder();
+  const { order, sendOrder } = useOrder();
 
   return (
     <>
@@ -40,14 +40,19 @@ function CheckoutConfirmation() {
                 Endereço para entrega:
               </Typography>
               <Typography>
-                Rua john doe, 1368
+                {order.address.address},
+                {' n'} {order.address.number},
+                {' '} {order.address.complement}<br />
+                Bairro: {order.address.code}<br />
+                CEP: {order.address.code}<br />
+                {order.address.city}/{order.address.state}
               </Typography>
               <MaterialDivider />
               <Typography variant="h6" gutterBottom>
                 Telefone para contato:
               </Typography>
               <Typography>
-                (99)95287-1758
+                {order.phone}
               </Typography>
             </PaperContainer>
           </Paper>
