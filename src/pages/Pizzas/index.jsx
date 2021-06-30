@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 
 import { FLAVOURS } from 'routes';
 
@@ -8,10 +8,11 @@ import {
   Paper,
   Divider,
   Card,
-  CardActionArea
+  CardActionArea,
+  LinearProgress
 } from '@material-ui/core';
 
-import { useAuth } from 'hooks';
+import { useAuth, useCollection } from 'hooks';
 
 import Content from 'components/Content';
 
@@ -25,24 +26,18 @@ import {
 
 import singularOrPlural from 'utils/singularOrPlural';
 
-import { db } from 'services/firebase';
-
 const Pizzas = () => {
-  const [pizzasSizes, setSizzasSizes] = useState([]);
   const { userInfo } = useAuth();
 
-  useEffect(() => {
-    db.collection('sizes').get().then(querySnapshot => {
-      let sizes = [];
-      querySnapshot.forEach(doc => {
-        sizes.push({
-          id: doc.id,
-          ...doc.data()
-        });
-      });
-      setSizzasSizes(sizes);
-    });
-  }, []);
+  const pizzasSizes = useCollection('sizes');
+
+  if (!pizzasSizes) {
+    return <LinearProgress />;
+  }
+
+  if (pizzasSizes.length === 0) {
+    return 'Não há dados.'
+  }
 
   return (
     <Content>

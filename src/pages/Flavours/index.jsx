@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
@@ -12,9 +12,12 @@ import {
 } from '@material-ui/core';
 
 import singularOrPlural from 'utils/singularOrPlural';
+
 import toMoney from 'utils/toMoney';
 
 import Footer from 'components/Footer';
+
+import { LinearProgress } from '@material-ui/core';
 
 import {
   PizzasGrid,
@@ -28,37 +31,23 @@ import {
 
 import Content from 'components/Content';
 
-import { db } from 'services/firebase';
+import { useCollection } from 'hooks';
 
 const Flavours = ({ location }) => {
-  const [pizzaFlavours, setPizzaFlavours] = useState([]);
   const [checkboxes, setCheckboxes] = useState(() => ({}));
 
-  useEffect(() => {
-    let mounted = true;
-
-    db.collection('flavours').get().then(querySnapshot => {
-      let flavours = [];
-      querySnapshot.forEach(doc => {
-        flavours.push({
-          id: doc.id,
-          ...doc.data()
-        });
-      });
-
-      if (mounted) {
-        setPizzaFlavours(flavours);
-      }
-    });
-
-    return () => {
-      mounted = false;
-    }
-
-  }, []);
+  const pizzaFlavours = useCollection('flavours');
 
   if (!location.state) {
     return <Redirect to={HOME}  />
+  }
+
+  if (!pizzaFlavours) {
+    return <LinearProgress />;
+  }
+
+  if (pizzaFlavours.length === 0) {
+    return 'Não há dados.'
   }
 
   const { flavours, id } = location.state.pizzaSize;
