@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
@@ -26,11 +26,36 @@ import {
   Title
 } from './styles';
 
-import pizzaFlavours from 'data/flavours';
 import Content from 'components/Content';
 
+import { db } from 'services/firebase';
+
 const Flavours = ({ location }) => {
+  const [pizzaFlavours, setPizzaFlavours] = useState([]);
   const [checkboxes, setCheckboxes] = useState(() => ({}));
+
+  useEffect(() => {
+    let mounted = true;
+
+    db.collection('flavours').get().then(querySnapshot => {
+      let flavours = [];
+      querySnapshot.forEach(doc => {
+        flavours.push({
+          id: doc.id,
+          ...doc.data()
+        });
+      });
+
+      if (mounted) {
+        setPizzaFlavours(flavours);
+      }
+    });
+
+    return () => {
+      mounted = false;
+    }
+
+  }, []);
 
   if (!location.state) {
     return <Redirect to={HOME}  />
@@ -104,7 +129,10 @@ const Flavours = ({ location }) => {
               pathname: PIZZA_QUANTITY,
               state: {
                 ...location.state,
-                pizzaFlavours: getFlavoursNameAndId(checkboxes)
+                pizzaFlavours: getFlavoursNameAndId({
+                  checkboxes,
+                  pizzaFlavours
+                })
               }
             },
             children: 'Quantas pizzas?',
@@ -124,7 +152,7 @@ function checkboxChecked(checkboxes) {
   return Object.values(checkboxes).filter(Boolean);
 }
 
-function getFlavoursNameAndId(checkboxes) {
+function getFlavoursNameAndId({ checkboxes, pizzaFlavours }) {
   return Object.entries(checkboxes)
     .filter(([, value]) => !!value)
     .map(([id]) => ({

@@ -32,8 +32,8 @@ const Pizzas = () => {
   const { userInfo } = useAuth();
 
   useEffect(() => {
-    let sizes = [];
     db.collection('sizes').get().then(querySnapshot => {
+      let sizes = [];
       querySnapshot.forEach(doc => {
         sizes.push({
           id: doc.id,
