@@ -3,12 +3,12 @@ import 'firebase/auth';
 import 'firebase/firestore';
 
 const config = {
-  apiKey: "AIzaSyDu1I6RCDm3O_HwbD2t1fMOqKCsIn85gQA",
-  authDomain: "reactzzaria-b5b93.firebaseapp.com",
-  projectId: "reactzzaria-b5b93",
-  storageBucket: "reactzzaria-b5b93.appspot.com",
-  messagingSenderId: "155151215295",
-  appId: "1:155151215295:web:3b531ea721ae3b68f4f40a"
+  apiKey: process.env.REACT_APP_API_KEY,
+  authDomain: process.env.REACT_APP_AUTH_DOMAIN,
+  projectId: process.env.REACT_APP_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
+  appId: process.env.REACT_APP_ID
 };
 
 firebase.initializeApp(config);
