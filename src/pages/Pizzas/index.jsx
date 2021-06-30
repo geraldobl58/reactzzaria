@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { FLAVOURS } from 'routes';
 
@@ -13,8 +13,6 @@ import {
 
 import { useAuth } from 'hooks';
 
-import pizzaSizes from 'data/sizes'
-
 import Content from 'components/Content';
 
 import {
@@ -25,11 +23,26 @@ import {
   PizzasGrid
 } from './styles';
 
-
 import singularOrPlural from 'utils/singularOrPlural';
 
+import { db } from 'services/firebase';
+
 const Pizzas = () => {
+  const [pizzasSizes, setSizzasSizes] = useState([]);
   const { userInfo } = useAuth();
+
+  useEffect(() => {
+    let sizes = [];
+    db.collection('sizes').get().then(querySnapshot => {
+      querySnapshot.forEach(doc => {
+        sizes.push({
+          id: doc.id,
+          ...doc.data()
+        });
+      });
+      setSizzasSizes(sizes);
+    });
+  }, []);
 
   return (
     <Content>
@@ -44,7 +57,7 @@ const Pizzas = () => {
 
       <PizzasGrid>
         <Grid container spacing={6}>
-          {pizzaSizes.map((item) => (
+          {pizzasSizes.map((item) => (
             <Grid item key={item.id} xs>
               <Paper>
                 <Card>
